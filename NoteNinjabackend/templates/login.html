@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static',filename='styles/styles.css') }}" rel="stylesheet">
+    <title>Login</title>
+</head>
+<body background="{{ url_for('static',filename='resources/background.jpg') }}">        
+    <form action="home.html" method="POST" class="registration-form">
+        <img src="{{ url_for('static',filename='resources/user_icon.png') }}">
+        <h1>Sign Up</h1>
+        <label for="email" style="float: left">Username or Email</label>
+        <input name="email" type="email" class="input-box" placeholder="user@domain.com">
+        <label for="password" style="float: left;">Password</label>
+        <input name="password" type="password" class="input-box" placeholder="*******">
+        <button type="submit" class="signup-button">Login</button>
+    </form>
+</body>
+</html>

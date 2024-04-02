@@ -1,0 +1,24 @@
+<!--<!DOCTYPE html>-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static',filename='styles/style.css') }}" rel="stylesheet">
+    <title>Register</title>
+</head>
+<body background="{{ url_for('static',filename='resources/background.jpg') }}">
+    <form action="home.html" method="POST" class="registration-form">
+        <img src="{{ url_for('static',filename='resources/user_icon.png') }}">
+        <h1>Register</h1>
+        <label for="username" style="float: left">Username</label><br>
+        <input name="username" label="username" type="text" class="input-box" placeholder="username">
+        <label for="email" style="float: left">Email</label><br>
+        <input name="email" type="email" class="input-box" placeholder="user@domain.com">
+        <label for="password" style="float: left">Password</label><br>
+        <input name="password" type="password" class="input-box" placeholder="*******">
+        <label for="confirm_password" style="float: left">Confirm Password</label><br>
+        <input name="confirm_password" type="password" class="input-box" placeholder="*******">
+        <button type="submit" class="signup-button">Create Your Account</button>
+    </form>
+</body>
+</html>

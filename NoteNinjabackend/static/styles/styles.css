@@ -1,0 +1,51 @@
+body
+{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-size: cover;
+    background-position: center;
+}
+
+.registration-form
+{
+    width: 300px;
+    box-shadow: 0 0 27px 0 rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background: hsl(208, 93%, 47%);
+    padding: 20px;
+    margin: 8% auto 0;
+    text-align: center;
+    color: #fff;
+}
+
+.input-box
+{
+    border-radius: 20px;
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #999;
+    outline: none;
+
+
+}
+
+button
+{
+    color: #0c0c0c;
+    width: 75%;
+    padding: 10px;
+    border-radius: 20px;
+    font-size: 15px;
+    margin: 10px 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+img
+{
+    width: 75px
+}
+
