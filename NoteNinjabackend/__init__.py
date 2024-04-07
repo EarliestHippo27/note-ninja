@@ -37,6 +37,6 @@ def create_app():
     return app
 
 def create_database():
-    if not path.exists('backend/' + DB_NAME):
+    if not path.exists('../var/NoteNinjabackend-instance/' + DB_NAME):
         db.create_all()
         print('Created Database')
