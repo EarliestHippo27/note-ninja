@@ -9,4 +9,15 @@ Installation:
 	- SQLAlchemy-Utils
 4. cd into note-ninja
 5. run 'python main.py'
+
+# Example Directory
+../venv  
+- include  
+- Lib  
+- note-ninja  
+	- main.py  
+	- ...  
+- Scripts  
+- var  
+- pyvenv.cfg
 		
