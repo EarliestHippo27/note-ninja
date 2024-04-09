@@ -9,12 +9,15 @@
 <body background="{{ url_for('static',filename='resources/background.jpg') }}">        
     <form method="POST" class="registration-form">
         <img src="{{ url_for('static',filename='resources/user_icon.png') }}">
-        <h1>Sign Up</h1>
-        <label for="email" style="float: left">Username or Email</label>
+        <h1>Sign In</h1>
+        <label for="email" style="margin-left: 10px; float: left; font-size: small; margin-bottom: 0%;">Username / Email</label>
         <input name="email" type="email" class="input-box" placeholder="user@domain.com">
-        <label for="password" style="float: left;">Password</label>
+        <label for="password" style="margin-left: 10px; float: left; font-size: small; margin-bottom: 0%;">Password</label>
         <input name="password" type="password" class="input-box" placeholder="*******">
         <button type="submit" class="signup-button"><strong>Login</strong></button>
+        <a href="" style="display: block; color: #fff; font-size: small;">Forgot password</a>
+        <p style="display: inline; color: #fff; font-size: small;">Don't have an account?</p>
+        <a href="/sign-up" style="display: inline; color: #fff; font-size: small;">Sign up</a>
     </form>
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
