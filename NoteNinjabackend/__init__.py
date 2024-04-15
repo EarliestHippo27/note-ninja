@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
+from sqlalchemy.engine import Engine
+from sqlalchemy import event
 from flask_login import LoginManager
 
 
@@ -39,3 +41,9 @@ def create_database():
     if not path.exists('../var/NoteNinjabackend-instance/' + DB_NAME):
         db.create_all()
         print('Created Database')
+
+@event.listens_for(Engine, "connect") #sqlite for some reason does NOT support foreign keys by default. This makes it so that foreign keys are enabled
+def set_sqlite_pragma(dbapi_connection, connection_record):
+    cursor = dbapi_connection.cursor()
+    cursor.execute("PRAGMA foreign_keys=ON")
+    cursor.close()

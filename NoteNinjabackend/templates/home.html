@@ -13,7 +13,9 @@
 
     <!--table to store file names and buttons-->
     <br><br>
-    <button class="btn btn-primary" style="float:left; margin-left: 2px;">Create New File</button>
+    <form method="POST">
+        <button class="btn btn-primary" style="float:left; margin-left: 2px;" name="submitType" value="create">Create New File</button>
+    </form>
     <a href="/logout"class="btn btn-primary" style="float:right; margin-right: 2px;">Logout</a>
    
     <table class="table">
@@ -51,62 +53,33 @@
                     <button type="submit" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
+
+            {% for Document in query %}
             <tr>
                 <td>
-                    <form>
-                        File 2
-                        <button class="btn btn-link">
+                    <form method="POST">
+                        {{Document.name}}
+                        <input name="docID" value="{{Document.id}}" style="display: none;">
+                        <button class="btn btn-link" name="submitType" value="title">
                             edit title
                         </button>
                     </form>
                 </td>
                 <td>
-                    Date Modfied
+                    Date Modfied: 
+                    {{Document.date}}
                 </td>
                 <td>
                     <input type="hidden">
-                    <button class="btn btn-primary">Edit</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <form>
-                        File 3
-                        <button class="btn btn-link">
-                            edit title
-                        </button>
-                    </form>
-                </td>
-                <td>
-                    Date Modfied
-                </td>
-                <td>
-                    <input type="hidden">
-                    <button class="btn btn-primary">Edit</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <form>
-                        File 4
-                        <button class="btn btn-link">
-                            edit title
-                        </button>
-                    </form>
-                </td>
-                <td>
-                    Date Modfied
-                </td>
-                <td>
-                    <form>
-                        <input type="hidden" value="2">
-                        <button type="submit" class="btn btn-primary" value="1">Edit</button>
-                        <button type="submit" class="btn btn-danger" value="1">Delete</button>
+                    <form method="POST">
+                        <input name="docID" value="{{Document.id}}" style="display: none;">
+                        <button type="submit" class="btn btn-primary" name="submitType" value="edit">Edit</button>
+                        <button type="submit" class="btn btn-danger" name="submitType" value="delete">Delete</button>
                     </form>
                 </td>
             </tr>
+            {% endfor %}
+            
         </tbody>
     </table>
     {% with messages = get_flashed_messages(with_categories=true) %}
