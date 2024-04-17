@@ -35,3 +35,7 @@ def home():
             db.session.commit()
             return redirect("/")
     return render_template("home.html")
+
+@views.route('/edit')
+def show_editor():
+    return render_template("edit.html")

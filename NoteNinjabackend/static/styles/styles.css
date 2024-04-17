@@ -32,6 +32,13 @@ body
 
 }
 
+.edit-doc
+{
+    border-radius: 12px;
+    width: 100px;
+    height: 100px;
+}
+
 button
 {
     color: #0c0c0c;
@@ -47,6 +54,5 @@ button
 
 img
 {
-    width: 75px
+    width: 75px;
 }
-
