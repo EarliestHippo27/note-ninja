@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 from .models import *  
 
@@ -10,7 +10,8 @@ def home():
     data = request.form
     submitType = request.form.get("submitType")
     docID = request.form.get("docID")
-    print(data)
+    var = {"docID":docID}
+    # print(data)
     if request.method == "GET":
         # print(db.session.get(User,current_user.id).documents)
         return render_template("home.html", query=db.session.get(User,current_user.id).documents)
@@ -28,7 +29,7 @@ def home():
             db.session.commit()
             return redirect("/")
         if submitType == "edit":
-            return redirect("/")
+            return redirect(url_for("views.show_editor", **var))
         if submitType == "delete":
             doc = db.session.get(Document, docID)
             db.session.delete(doc)
@@ -36,6 +37,15 @@ def home():
             return redirect("/")
     return render_template("home.html")
 
-@views.route('/edit')
+@views.route('/edit', methods=['GET', 'POST'])
+@login_required
 def show_editor():
-    return render_template("edit.html")
+    docID = request.args.get("docID")
+    if request.method == "POST":
+        symbol = request.form.get("greater-than-button")
+        docID = request.form.get("docID")
+        write = request.form.get("edit-box")
+        data = request.form
+        print(data)
+    return render_template("edit.html", query=docID)
+

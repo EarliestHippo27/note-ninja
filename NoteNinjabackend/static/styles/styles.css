@@ -32,13 +32,6 @@ body
 
 }
 
-.edit-doc
-{
-    border-radius: 12px;
-    width: 100px;
-    height: 100px;
-}
-
 button
 {
     color: #0c0c0c;
@@ -55,4 +48,40 @@ button
 img
 {
     width: 75px;
+}
+
+.title
+{
+    text-align: center;
+}
+
+.container 
+{
+    margin-left: 15%;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: 500px;
+    width: 50%;
+}
+
+.symbol-array
+{   margin-top: 3%;
+    margin-left: 2%;
+    display: inline-flex;
+    width: 8%;
+    flex-wrap: wrap;
+}
+
+.symbol
+{
+    height: 30px;
+    width: 30px;
+    font-size: small;
+    background-color: white;
+}
+
+.edit-box
+{
+    height: 100%;
 }
