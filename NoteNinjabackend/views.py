@@ -41,11 +41,19 @@ def home():
 @login_required
 def show_editor():
     docID = request.args.get("docID")
+    doc = db.session.get(Document, docID)
     if request.method == "POST":
         symbol = request.form.get("greater-than-button")
         docID = request.form.get("docID")
         write = request.form.get("edit-box")
         data = request.form
+        doc = db.session.get(Document, docID)
+        doc.data = write
+        db.session.commit()
         print(data)
-    return render_template("edit.html", query=docID)
+    #if request.method == "GET":    
+        
+    print(doc.data)
+    return render_template("edit.html", query=docID, write=doc.data)
+
 
