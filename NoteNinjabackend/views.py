@@ -47,6 +47,8 @@ def show_editor():
         docID = request.form.get("docID")
         write = request.form.get("edit-box")
         data = request.form
+        if(symbol != None):
+            write+=symbol
         doc = db.session.get(Document, docID)
         doc.data = write
         db.session.commit()

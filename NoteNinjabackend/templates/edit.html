@@ -9,23 +9,27 @@
 
     <h1 class="title">Document Title</h1>
 
-    <form action = "" method="post" class="symbol-array">
-        <input name="docID" value="{{query}}">
-        <button name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-    </form>
+    <div class="symbol-array">
+        <button onclick="appendMath('>')" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button onclick="appendMath('Σ')" name="greater-than-button" symbol value="Σ" type="submit"> Σ </button>
+        <button onclick="appendMath('β')" name="greater-than-button" symbol value="β" type="submit"> β </button>
+        <button onclick="appendMath('α')" name="greater-than-button" symbol value="α" type="submit"> α </button>
+        <button onclick="appendMath('>')" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button onclick="appendMath('>')" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+    </div>
     
     <form action = "" method="post" class="container">
-        <input name="docID" value="{{query}}">
-        <textarea class="edit-box" name="edit-box" id="" cols="30" rows="10">{{write}}
-            </textarea>
-        <button name="submit-button" type="submit" value="save">Save changes</button>
+        <input style="display: none;" name="docID" value="{{query}}">
+        <textarea class="edit-box" name="edit-box" id="edit-box" cols="30" rows="10">{{write}}</textarea>
+        <button name="submit-button" type="submit" value="save" style="align-self: center;">Save changes</button>
     </form>
     
 </body>
 </html>
+
+<script>
+    editor = document.getElementById("edit-box")
+    function appendMath(math) {
+        editor.value += math
+    }
+</script>
