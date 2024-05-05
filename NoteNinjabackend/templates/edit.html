@@ -6,7 +6,16 @@
     <title>Ninja Editor</title>
     <link href="{{ url_for('static',filename='styles/styles.css') }}" rel="stylesheet">
 <body class>
-    <div class="title" id="titleBox" style="font-size: 32px; text-align: center;" contenteditable="true">{{theDoc.name}}</div>
+    <div>
+        <h3 style="text-align: right; padding-right: 32px;">{{user.username}}</h1>
+    </div>
+    <h1 class="title" id="titleBox" contenteditable="true">{{theDoc.name}}</h1>
+
+    <div style="padding-left: 32px;">
+        <input id="fontBox" type="number" placeholder="Font: 12px">
+    </div>
+    
+    <br>
     
     <div class="symbol-array">
         <button onclick="appendMath('>')" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
@@ -19,7 +28,7 @@
     
     <form action = "" method="post" class="container">
         <input style="display: none;" name="docID" value="{{query}}">
-        <textarea class="edit-box" name="edit-box" id="edit-box" cols="30" rows="10">{{write}}</textarea>
+        <textarea class="edit-box" name="edit-box" id="edit-box" cols="30" rows="10" style="font-size: {{theDoc.font_size}}px;">{{write}}</textarea>
         <button name="submit-button" type="submit" value="save" style="align-self: center;">Save changes</button>
     </form>
     
@@ -30,6 +39,7 @@
 
 <script>
     titleBox = document.getElementById("titleBox");
+    fontbox = document.getElementById("fontBox")
     editor = document.getElementById("edit-box");
 
     function appendMath(math) {
@@ -37,13 +47,26 @@
     }
 
     titleBox.addEventListener("keydown", function (e) {
-    if (e.keyCode === 13) {
-        event.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "/test",
-            data: {"docID" : "{{query}}", "title" : titleBox.textContent}
-        })
+        if (e.keyCode === 13) {
+            event.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "{{ url_for('views.update_title')  }}",
+                data: {"docID" : "{{query}}", "title" : titleBox.textContent}
+            })
+            titleBox.blur();
     }
     });
+
+    fontbox.addEventListener("keydown", function (e) {
+        if (e.keyCode === 13) {
+            $.ajax({
+                type: "POST",
+                url: "{{ url_for('views.update_font_size')  }}",
+                data: {"docID" : "{{query}}", "fontSize" : fontbox.value}
+            })
+            editor.style.fontSize = String(fontbox.value) + "px"
+            fontbox.blur();
+        }
+    })
 </script>

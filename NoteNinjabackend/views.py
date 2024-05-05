@@ -14,19 +14,14 @@ def home():
     # print(data)
     if request.method == "GET":
         # print(db.session.get(User,current_user.id).documents)
-        return render_template("home.html", query=db.session.get(User,current_user.id).documents)
+        return render_template("home.html", query=db.session.get(User,current_user.id).documents, user=db.session.get(User,current_user.id))
     if request.method == "POST":
         if submitType == "create":
             new_doc = Document(name="New Document", user_id=current_user.id)
+            new_doc.font_size = 12
             db.session.add(new_doc)
             db.session.commit()
             print("Made Document")
-            return redirect("/")
-        if submitType == "title":
-            doc = db.session.get(Document, docID)
-            doc.name = "Changed Title"
-            doc.date = func.now()
-            db.session.commit()
             return redirect("/")
         if submitType == "edit":
             return redirect(url_for("views.show_editor", **var))
@@ -51,24 +46,48 @@ def show_editor():
             write+=symbol
         doc = db.session.get(Document, docID)
         doc.data = write
+        doc.date = func.now()
         db.session.commit()
         print(data)
     #if request.method == "GET":    
         
     print(doc.data)
-    return render_template("edit.html", query=docID, write=doc.data, theDoc=doc)
+    return render_template("edit.html", query=docID, write=doc.data, theDoc=doc, user=db.session.get(User,current_user.id))
 
-@views.route('/test', methods=['POST'])
+@views.route('/update-title', methods=['GET','POST'])
 @login_required
-def test():
+def update_title():
+    if(request.method == 'GET'):
+        #Just in case someone manually tries to go to this url, send them back home
+        return redirect(url_for("views.home"))
     if request.method == 'POST':
         print(request.form)
         docID = request.form.get("docID")
         title = request.form.get("title")
         doc = db.session.get(Document, docID)
         if(doc != None):
+            doc.date = func.now()
             doc.name = title
             db.session.commit()
-            print("title changed")
-        return('', 204)
-    pass
+            print("title changed to " + title)
+            return('', 204)
+    return redirect(url_for("views.home"))
+
+@views.route('/update-font-size', methods=['GET','POST'])
+@login_required
+def update_font_size():
+    if(request.method == 'GET'):
+        #Just in case someone manually tries to go to this url, send them back home
+        return redirect(url_for("views.home"))
+    if request.method == 'POST':
+        print(request.form)
+        docID = request.form.get("docID")
+        fontSize = request.form.get("fontSize")
+        doc = db.session.get(Document, docID)
+        if(doc != None):
+            doc.date = func.now()
+            doc.font_size = int(fontSize)
+            db.session.commit()
+            print("font size changed to " + fontSize)
+            return('', 204)
+    return redirect(url_for("views.home"))

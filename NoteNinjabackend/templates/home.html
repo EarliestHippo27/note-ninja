@@ -12,6 +12,9 @@
     <!--button for creating new file-->
 
     <!--table to store file names and buttons-->
+    <div class="title">
+        <h1 style="text-align: center;">Welcome {{user.username}}!</h1>
+    </div>
     <br><br>
     <form method="POST">
         <button class="btn btn-primary" style="float:left; margin-left: 2px;" name="submitType" value="create">Create New File</button>
@@ -35,35 +38,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>
-                    <form>
-                        File 1
-                        <button class="btn btn-link">
-                            edit title
-                        </button>
-                    </form>
-                </td>
-                <td>
-                    Date Modfied
-                </td>
-                <td>
-                    <input type="hidden">
-                    <button class="btn btn-primary">Edit</button>
-                    <button type="submit" class="btn btn-danger">Delete</button>
-                </td>
-            </tr>
-
             {% for Document in query %}
             <tr>
                 <td>
-                    <form method="POST">
-                        {{Document.name}}
-                        <input name="docID" value="{{Document.id}}" style="display: none;">
-                        <button class="btn btn-link" name="submitType" value="title">
-                            edit title
-                        </button>
-                    </form>
+                    {{Document.name}}
                 </td>
                 <td>
                     Date Modfied: 
