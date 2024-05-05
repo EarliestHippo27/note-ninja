@@ -18,17 +18,18 @@
     <br>
     
     <div class="symbol-array">
-        <button onclick="appendMath('>')" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button onclick="appendMath('Σ')" name="greater-than-button" symbol value="Σ" type="submit"> Σ </button>
-        <button onclick="appendMath('β')" name="greater-than-button" symbol value="β" type="submit"> β </button>
-        <button onclick="appendMath('α')" name="greater-than-button" symbol value="α" type="submit"> α </button>
-        <button onclick="appendMath('>')" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button onclick="appendMath('>')" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button onclick="appendMath('Σ');" name="greater-than-button" symbol value="Σ" type="submit"> Σ </button>
+        <button onclick="appendMath('β');" name="greater-than-button" symbol value="β" type="submit"> β </button>
+        <button onclick="appendMath('α');" name="greater-than-button" symbol value="α" type="submit"> α </button>
+        <button onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
     </div>
     
     <form action = "" method="post" class="container">
         <input style="display: none;" name="docID" value="{{query}}">
-        <textarea class="edit-box" name="edit-box" id="edit-box" cols="30" rows="10" style="font-size: {{theDoc.font_size}}px;">{{write}}</textarea>
+        <!-- vscode-html-ignore-next -->
+        <textarea class="edit-box" name="edit-box" id="edit-box" cols="30" rows="10">{{write}}</textarea>
         <button name="submit-button" type="submit" value="save" style="align-self: center;">Save changes</button>
     </form>
     
@@ -39,8 +40,13 @@
 
 <script>
     titleBox = document.getElementById("titleBox");
-    fontbox = document.getElementById("fontBox")
+    fontbox = document.getElementById("fontBox");
     editor = document.getElementById("edit-box");
+
+    window.onload = function() {
+        console.log("INIT!")
+        editor.style.fontSize = String('{{theDoc.font_size}}') + "px";
+    }
 
     function appendMath(math) {
         editor.value += math;
@@ -65,7 +71,8 @@
                 url: "{{ url_for('views.update_font_size')  }}",
                 data: {"docID" : "{{query}}", "fontSize" : fontbox.value}
             })
-            editor.style.fontSize = String(fontbox.value) + "px"
+            console.log("Updated Font Size")
+            editor.style.fontSize = String(fontbox.value) + "px";
             fontbox.blur();
         }
     })

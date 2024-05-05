@@ -18,7 +18,7 @@ def home():
     if request.method == "POST":
         if submitType == "create":
             new_doc = Document(name="New Document", user_id=current_user.id)
-            new_doc.font_size = 12
+            #new_doc.font_size = 12
             db.session.add(new_doc)
             db.session.commit()
             print("Made Document")
