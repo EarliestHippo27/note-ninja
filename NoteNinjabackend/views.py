@@ -56,6 +56,19 @@ def show_editor():
     #if request.method == "GET":    
         
     print(doc.data)
-    return render_template("edit.html", query=docID, write=doc.data)
+    return render_template("edit.html", query=docID, write=doc.data, theDoc=doc)
 
-
+@views.route('/test', methods=['POST'])
+@login_required
+def test():
+    if request.method == 'POST':
+        print(request.form)
+        docID = request.form.get("docID")
+        title = request.form.get("title")
+        doc = db.session.get(Document, docID)
+        if(doc != None):
+            doc.name = title
+            db.session.commit()
+            print("title changed")
+        return('', 204)
+    pass
