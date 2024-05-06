@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ninja Editor</title>
     <link href="{{ url_for('static',filename='styles/styles.css') }}" rel="stylesheet">
-<body class>
+<body background="{{ url_for('static',filename='resources/background.jpg') }}" style="width: 90%; align-items: center; margin-left: 5%;">
     <div>
         <h3 style="text-align: right; padding-right: 32px;">{{user.username}}</h1>
     </div>
@@ -18,19 +18,19 @@
     <br>
     
     <div class="symbol-array">
-        <button onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button onclick="appendMath('Σ');" name="greater-than-button" symbol value="Σ" type="submit"> Σ </button>
-        <button onclick="appendMath('β');" name="greater-than-button" symbol value="β" type="submit"> β </button>
-        <button onclick="appendMath('α');" name="greater-than-button" symbol value="α" type="submit"> α </button>
-        <button onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button class="btn" onclick="appendMath('Σ');" name="greater-than-button" symbol value="Σ" type="submit"> Σ </button>
+        <button class="btn" onclick="appendMath('β');" name="greater-than-button" symbol value="β" type="submit"> β </button>
+        <button class="btn" onclick="appendMath('α');" name="greater-than-button" symbol value="α" type="submit"> α </button>
+        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
     </div>
     
     <form action = "" method="post" class="container">
         <input style="display: none;" name="docID" value="{{query}}">
         <!-- vscode-html-ignore-next -->
         <textarea class="edit-box" name="edit-box" id="edit-box" cols="30" rows="10">{{write}}</textarea>
-        <button name="submit-button" type="submit" value="save" style="align-self: center;">Save changes</button>
+        <button class="savebtn" name="submit-button" type="submit" value="save">Save changes</button>
     </form>
     
 </body>
