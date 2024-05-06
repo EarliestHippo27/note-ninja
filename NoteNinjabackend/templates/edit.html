@@ -50,7 +50,7 @@
     <form action = "" method="post" class="container">
         <input style="display: none;" name="docID" value="{{query}}">
         <!-- vscode-html-ignore-next -->
-        <textarea class="edit-box" name="edit-box" id="edit-box" cols="30" rows="10">{{write}}</textarea>
+        <textarea class="edit-box" name="edit-box" id="edit-box" cols="30" rows="10" spellcheck="false">{{write}}</textarea>
         <button class="savebtn" name="submit-button" type="submit" value="save">Save changes</button>
     </form>
 </body>
@@ -66,11 +66,19 @@
     window.onload = function() {
         console.log("INIT!")
         editor.style.fontSize = String('{{theDoc.font_size}}') + "px";
+        
     }
 
     function appendMath(math) {
         editor.value += math;
     }
+    
+    editor.addEventListener("keydown", function (e) {
+        if (e.key === 'Tab') {
+            event.preventDefault();
+            editor.value += '\t';
+    }
+    });
 
     titleBox.addEventListener("keydown", function (e) {
         if (e.keyCode === 13) {
