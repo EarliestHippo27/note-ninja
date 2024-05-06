@@ -49,10 +49,16 @@
                 </td>
                 <td>
                     <input type="hidden">
+                    
                     <form method="POST">
                         <input name="docID" value="{{Document.id}}" style="display: none;">
                         <button type="submit" class="btn btn-primary" name="submitType" value="edit">Edit</button>
                         <button type="submit" class="btn btn-danger" name="submitType" value="delete">Delete</button>
+                    <select id="dropdown">
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
                     </form>
                 </td>
             </tr>

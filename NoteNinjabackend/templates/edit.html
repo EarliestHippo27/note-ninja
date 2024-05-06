@@ -14,10 +14,26 @@
     <div style="padding-left: 32px;">
         <input id="fontBox" type="number" placeholder="Font: 12px">
     </div>
-    
+    <select id="dropdown" style="margin-left: 32px;">
+        <option value="option1">Option 1</option>
+        <option value="option2">Option 2</option>
+        <option value="option3">Option 3</option>
+    </select>
     <br>
     
     <div class="symbol-array">
+        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button class="btn" onclick="appendMath('Σ');" name="greater-than-button" symbol value="Σ" type="submit"> Σ </button>
+        <button class="btn" onclick="appendMath('β');" name="greater-than-button" symbol value="β" type="submit"> β </button>
+        <button class="btn" onclick="appendMath('α');" name="greater-than-button" symbol value="α" type="submit"> α </button>
+        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button class="btn" onclick="appendMath('Σ');" name="greater-than-button" symbol value="Σ" type="submit"> Σ </button>
+        <button class="btn" onclick="appendMath('β');" name="greater-than-button" symbol value="β" type="submit"> β </button>
+        <button class="btn" onclick="appendMath('α');" name="greater-than-button" symbol value="α" type="submit"> α </button>
+        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
         <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
         <button class="btn" onclick="appendMath('Σ');" name="greater-than-button" symbol value="Σ" type="submit"> Σ </button>
         <button class="btn" onclick="appendMath('β');" name="greater-than-button" symbol value="β" type="submit"> β </button>
@@ -32,7 +48,6 @@
         <textarea class="edit-box" name="edit-box" id="edit-box" cols="30" rows="10">{{write}}</textarea>
         <button class="savebtn" name="submit-button" type="submit" value="save">Save changes</button>
     </form>
-    
 </body>
 </html>
 
