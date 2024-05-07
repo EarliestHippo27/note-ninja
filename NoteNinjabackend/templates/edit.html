@@ -66,6 +66,16 @@
     alignBox = document.getElementById("alignBox");
     editor = document.getElementById("edit-box");
 
+    setInterval(updateText, 10000); // Updates every 10 seconds
+
+    function updateText() {
+        $.ajax({
+            type: "POST",
+            url: "{{ url_for('views.show_editor')  }}",
+            data: {"docID" : "{{query}}", "edit-box" : editor.value}
+        })
+    }
+
     window.onload = function() {
         console.log("INIT!")
         editor.style.fontSize = String('{{theDoc.font_size}}') + "px";
