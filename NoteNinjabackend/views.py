@@ -91,3 +91,22 @@ def update_font_size():
             print("font size changed to " + fontSize)
             return('', 204)
     return redirect(url_for("views.home"))
+
+@views.route('/update-font', methods=['GET','POST'])
+@login_required
+def update_font():
+    if(request.method == 'GET'):
+        #Just in case someone manually tries to go to this url, send them back home
+        return redirect(url_for("views.home"))
+    if request.method == 'POST':
+        print(request.form)
+        docID = request.form.get("docID")
+        font = request.form.get("font")
+        doc = db.session.get(Document, docID)
+        if(doc != None):
+            doc.date = func.now()
+            doc.font = font
+            db.session.commit()
+            print("font changed to " + font)
+            return('', 204)
+    return redirect(url_for("views.home"))

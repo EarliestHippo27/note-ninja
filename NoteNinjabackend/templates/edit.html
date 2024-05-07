@@ -12,12 +12,12 @@
     <h1 class="title" id="titleBox" contenteditable="true">{{theDoc.name}}</h1>
 
     <div style="padding-left: 32px;">
-        <input id="fontBox" type="number" placeholder="Font: 12px">
+        <input id="fontSizeBox" type="number" placeholder="Font: 12px">
     </div>
-    <select id="dropdown" style="margin-left: 32px;">
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
+    <select id="fontBox" style="margin-left: 32px;">
+        <option onclick="updateFont('Times, serif')" value="option1">Times</option>
+        <option onclick="updateFont('Arial, serif')" value="option2">Arial</option>
+        <option onclick="updateFont('Courier New, serif')" value="option3">Courier New</option>
     </select>
     <select id="dropdown">
         <option value="option1">Option 1</option>
@@ -60,17 +60,30 @@
 
 <script>
     titleBox = document.getElementById("titleBox");
-    fontbox = document.getElementById("fontBox");
+    fontSizeBox = document.getElementById("fontSizeBox");
+    fontBox = document.getElementById("fontBox");
     editor = document.getElementById("edit-box");
 
     window.onload = function() {
         console.log("INIT!")
         editor.style.fontSize = String('{{theDoc.font_size}}') + "px";
-        
-    }
+        editor.style.fontFamily = '{{theDoc.font}}'
+
+        fontSizeBox.value ='12';
+    }  
 
     function appendMath(math) {
         editor.value += math;
+    }
+
+    function updateFont(font) {
+        editor.style.fontFamily = font;
+
+        $.ajax({
+            type: "POST",
+            url: "{{ url_for('views.update_font')  }}",
+            data: {"docID" : "{{query}}", "font" : font}
+        })
     }
     
     editor.addEventListener("keydown", function (e) {
@@ -92,16 +105,32 @@
     }
     });
 
-    fontbox.addEventListener("keydown", function (e) {
+    fontSizeBox.addEventListener("keydown", function (e) {
         if (e.keyCode === 13) {
+            if(fontSizeBox.value == '') {
+                fontSizeBox.value ='12';
+            }
+
             $.ajax({
                 type: "POST",
                 url: "{{ url_for('views.update_font_size')  }}",
-                data: {"docID" : "{{query}}", "fontSize" : fontbox.value}
+                data: {"docID" : "{{query}}", "fontSize" : fontSizeBox.value}
             })
             console.log("Updated Font Size")
-            editor.style.fontSize = String(fontbox.value) + "px";
-            fontbox.blur();
+            editor.style.fontSize = String(fontSizeBox.value) + "px";
+            fontSizeBox.blur();
         }
     })
+
+    fontSizeBox.addEventListener("change", function() {
+        $.ajax({
+            type: "POST",
+            url: "{{ url_for('views.update_font_size')  }}",
+            data: {"docID" : "{{query}}", "fontSize" : fontSizeBox.value}
+        })
+        console.log("Updated Font Size")
+        editor.style.fontSize = String(fontSizeBox.value) + "px";
+        fontSizeBox.blur();
+    })
+
 </script>
