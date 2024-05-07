@@ -125,3 +125,21 @@ def update_align():
             db.session.commit()
             print("alignment changed to " + align)
             return('', 204)
+
+@views.route('/update-tag', methods=['GET','POST'])
+@login_required
+def update_tag():
+    if(request.method == 'GET'):
+        #Just in case someone manually tries to go to this url, send them back home
+        return redirect(url_for("views.home"))
+    if request.method == 'POST':
+        print(request.form)
+        docID = request.form.get("docID")
+        tag = request.form.get("tag")
+        doc = db.session.get(Document, docID)
+        if(doc != None):
+            doc.date = func.now()
+            doc.tag = tag
+            db.session.commit()
+            print("tag changed to " + tag)
+            return('', 204)

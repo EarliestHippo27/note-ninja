@@ -15,15 +15,15 @@
         <input id="fontSizeBox" type="number" placeholder="Font: 12px">
     </div>
     <select id="fontBox" style="margin-left: 32px;">
-        <option onclick="updateFont('Times, serif')">Times</option>
-        <option onclick="updateFont('Arial, serif')">Arial</option>
-        <option onclick="updateFont('Courier New, serif')">Courier New</option>
+        <option onclick="updateFont('Times, serif')" value="Times, serif">Times</option>
+        <option onclick="updateFont('Arial, serif')" value="Arial, serif">Arial</option>
+        <option onclick="updateFont('Courier New, serif')" value="Courier New, serif">Courier New</option>
     </select>
     <select id="alignBox">
-        <option onclick="updateAlign('left')">Left</option>
+        <option onclick="updateAlign('left')" value="left">Left</option>
         <option onclick="updateAlign('right')" value="right">Right</option>
-        <option onclick="updateAlign('center')">Center</option>
-        <option onclick="updateAlign('justify')">Block</option>
+        <option onclick="updateAlign('center')" value="center">Center</option>
+        <option onclick="updateAlign('justify')" value="justify">Block</option>
     </select>
     <br>
     
@@ -77,7 +77,7 @@
 
         fontBox.value = '{{theDoc.font}}'
         alignBox.value = '{{theDoc.align}}'
-        fontSizeBox.value ='12';
+        fontSizeBox.value ='{{theDoc.font_size}}';
     }  
 
     function appendMath(math) {

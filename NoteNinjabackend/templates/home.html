@@ -49,16 +49,18 @@
                 </td>
                 <td>
                     <input type="hidden">
-                    
+
                     <form method="POST">
+                        <select id="tagBox">
+                            <option disabled selected value="{{Document.tag}}">{{Document.tag}}</option>
+                            <option onclick="updateTag('No Tag', '{{Document.id}}')" value="No Tag">No Tag</option>
+                            <option onclick="updateTag('Homework', '{{Document.id}}')" value="Homework">Homework</option>
+                            <option onclick="updateTag('Lecture Notes', '{{Document.id}}')" value="Lecture Notes">Lecture Notes</option>
+                            <option onclick="updateTag('Important', '{{Document.id}}')" value="Important">Important</option>
+                        </select>
                         <input name="docID" value="{{Document.id}}" style="display: none;">
                         <button type="submit" class="btn btn-primary" name="submitType" value="edit">Edit</button>
                         <button type="submit" class="btn btn-danger" name="submitType" value="delete">Delete</button>
-                    <select id="dropdown">
-                        <option value="option1">Option 1</option>
-                        <option value="option2">Option 2</option>
-                        <option value="option3">Option 3</option>
-                    </select>
                     </form>
                 </td>
             </tr>
@@ -77,3 +79,17 @@
     {% endwith %}
 </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+
+<script>
+    tagBox = document.getElementById("tagBox")
+
+    function updateTag(tag, id) {
+        $.ajax({
+            type: "POST",
+            url: "{{ url_for('views.update_tag')  }}",
+            data: {"docID" : id, "tag" : tag}
+        })
+    }
+</script>
