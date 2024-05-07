@@ -12,18 +12,18 @@
     <h1 class="title" id="titleBox" contenteditable="true">{{theDoc.name}}</h1>
 
     <div style="padding-left: 32px;">
-        <input id="fontSizeBox" type="number" placeholder="Font: 12px">
+        <input id="fontSizeBox" type="number" placeholder="Font: 12px" style="width:167px">
     </div>
-    <select id="fontBox" style="margin-left: 32px;">
-        <option onclick="updateFont('Times, serif')" value="Times, serif">Times</option>
-        <option onclick="updateFont('Arial, serif')" value="Arial, serif">Arial</option>
-        <option onclick="updateFont('Courier New, serif')" value="Courier New, serif">Courier New</option>
+    <select class = "dropdown" id="fontBox" style="margin-left: 32px;">
+        <option class = "dropdown-btn" onclick="updateFont('Times, serif')" value="Times, serif">Times</option>
+        <option class = "dropdown-btn" onclick="updateFont('Arial, serif')" value="Arial, serif">Arial</option>
+        <option class = "dropdown-btn" onclick="updateFont('Courier New, serif')" value="Courier New, serif">Courier New</option>
     </select>
-    <select id="alignBox">
-        <option onclick="updateAlign('left')" value="left">Left</option>
-        <option onclick="updateAlign('right')" value="right">Right</option>
-        <option onclick="updateAlign('center')" value="center">Center</option>
-        <option onclick="updateAlign('justify')" value="justify">Block</option>
+    <select class = "dropdown" id="alignBox">
+        <option class = "dropdown-btn" onclick="updateAlign('left')" value="left">Left</option>
+        <option class = "dropdown-btn" onclick="updateAlign('right')" value="right">Right</option>
+        <option class = "dropdown-btn" onclick="updateAlign('center')" value="center">Center</option>
+        <option class = "dropdown-btn" onclick="updateAlign('justify')" value="justify">Block</option>
     </select>
     <br>
     
