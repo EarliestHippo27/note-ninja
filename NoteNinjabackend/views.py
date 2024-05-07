@@ -11,7 +11,7 @@ def home():
     submitType = request.form.get("submitType")
     docID = request.form.get("docID")
     var = {"docID":docID}
-    # print(data)
+    print(data)
     if request.method == "GET":
         # print(db.session.get(User,current_user.id).documents)
         return render_template("home.html", query=db.session.get(User,current_user.id).documents, user=db.session.get(User,current_user.id))
@@ -22,14 +22,23 @@ def home():
             db.session.add(new_doc)
             db.session.commit()
             print("Made Document")
-            return redirect("/")
+            return render_template("home.html", query=db.session.get(User,current_user.id).documents, user=db.session.get(User,current_user.id))
         if submitType == "edit":
             return redirect(url_for("views.show_editor", **var))
         if submitType == "delete":
             doc = db.session.get(Document, docID)
             db.session.delete(doc)
             db.session.commit()
-            return redirect("/")
+            return render_template("home.html", query=db.session.get(User,current_user.id).documents, user=db.session.get(User,current_user.id))
+        if submitType == "filter":
+            userDocs = db.session.get(User,current_user.id).documents
+            filt = request.form.get("filterType")
+            if (filt == "All" or filt == None):
+                return render_template("home.html", query=db.session.get(User,current_user.id).documents, user=db.session.get(User,current_user.id))
+            
+            filtDocs = [doc for doc in userDocs if doc.tag == filt]
+                
+            return render_template("home.html", query=filtDocs, user=db.session.get(User,current_user.id))
     return render_template("home.html")
 
 @views.route('/edit', methods=['GET', 'POST'])

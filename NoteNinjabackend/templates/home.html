@@ -36,9 +36,23 @@
                     BUTTONS
                 </td>
             </tr>
+
+            <div style="float: right">
+                <form method="POST">
+                    <select id="filterBox" name="filterType">
+                        <option name="filterType" value="All">All</option>
+                        <option name="filterType" value="Homework">Homework</option>
+                        <option name="filterType" value="Lecture Notes">Lecture Notes</option>
+                        <option name="filterType" value="Important">Important</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary" name="submitType" value="filter">Apply Filter</button>
+                </form>
+            </div>
+            
         </thead>
         <tbody>
             {% for Document in query %}
+
             <tr>
                 <td>
                     {{Document.name}}
