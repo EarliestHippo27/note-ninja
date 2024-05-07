@@ -15,14 +15,15 @@
         <input id="fontSizeBox" type="number" placeholder="Font: 12px">
     </div>
     <select id="fontBox" style="margin-left: 32px;">
-        <option onclick="updateFont('Times, serif')" value="option1">Times</option>
-        <option onclick="updateFont('Arial, serif')" value="option2">Arial</option>
-        <option onclick="updateFont('Courier New, serif')" value="option3">Courier New</option>
+        <option onclick="updateFont('Times, serif')">Times</option>
+        <option onclick="updateFont('Arial, serif')">Arial</option>
+        <option onclick="updateFont('Courier New, serif')">Courier New</option>
     </select>
-    <select id="dropdown">
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
+    <select id="alignBox">
+        <option onclick="updateAlign('left')">Left</option>
+        <option onclick="updateAlign('right')" value="right">Right</option>
+        <option onclick="updateAlign('center')">Center</option>
+        <option onclick="updateAlign('justify')">Block</option>
     </select>
     <br>
     
@@ -62,13 +63,20 @@
     titleBox = document.getElementById("titleBox");
     fontSizeBox = document.getElementById("fontSizeBox");
     fontBox = document.getElementById("fontBox");
+    alignBox = document.getElementById("alignBox");
     editor = document.getElementById("edit-box");
 
     window.onload = function() {
         console.log("INIT!")
         editor.style.fontSize = String('{{theDoc.font_size}}') + "px";
         editor.style.fontFamily = '{{theDoc.font}}'
+        if(editor.value == 'None') {
+            editor.value = '';
+        }
+        editor.style.textAlign = '{{theDoc.align}}'
 
+        fontBox.value = '{{theDoc.font}}'
+        alignBox.value = '{{theDoc.align}}'
         fontSizeBox.value ='12';
     }  
 
@@ -83,6 +91,16 @@
             type: "POST",
             url: "{{ url_for('views.update_font')  }}",
             data: {"docID" : "{{query}}", "font" : font}
+        })
+    }
+
+    function updateAlign(align) {
+        editor.style.textAlign = align;
+
+        $.ajax({
+            type: "POST",
+            url: "{{ url_for('views.update_align')  }}",
+            data: {"docID" : "{{query}}", "align" : align}
         })
     }
     

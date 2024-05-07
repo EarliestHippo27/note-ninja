@@ -99,12 +99,15 @@ img
 
 .edit-box
 {
-    width: 840px; 
+  width: 840px; 
   height: 1000px; 
   padding: 10px;
   font-size: 16px;
   border: 2px solid #2196F3; 
   border-radius: 5px;
+  overflow-x: hidden;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 .savebtn {

@@ -71,7 +71,6 @@ def update_title():
             db.session.commit()
             print("title changed to " + title)
             return('', 204)
-    return redirect(url_for("views.home"))
 
 @views.route('/update-font-size', methods=['GET','POST'])
 @login_required
@@ -90,7 +89,6 @@ def update_font_size():
             db.session.commit()
             print("font size changed to " + fontSize)
             return('', 204)
-    return redirect(url_for("views.home"))
 
 @views.route('/update-font', methods=['GET','POST'])
 @login_required
@@ -109,4 +107,21 @@ def update_font():
             db.session.commit()
             print("font changed to " + font)
             return('', 204)
-    return redirect(url_for("views.home"))
+
+@views.route('/update-align', methods=['GET','POST'])
+@login_required
+def update_align():
+    if(request.method == 'GET'):
+        #Just in case someone manually tries to go to this url, send them back home
+        return redirect(url_for("views.home"))
+    if request.method == 'POST':
+        print(request.form)
+        docID = request.form.get("docID")
+        align = request.form.get("align")
+        doc = db.session.get(Document, docID)
+        if(doc != None):
+            doc.date = func.now()
+            doc.align = align
+            db.session.commit()
+            print("alignment changed to " + align)
+            return('', 204)
