@@ -31,7 +31,7 @@ class User(db.Model, UserMixin):
         serial = Serializer(current_app.config['SECRET_KEY'])
         try:
             print("Attempting loads")
-            user_id = serial.loads(token, salt='reset_password')['user_id']
+            user_id = serial.loads(token, salt='reset_password', max_age=300)['user_id']
             print("Did loads")
         except:
                 return None

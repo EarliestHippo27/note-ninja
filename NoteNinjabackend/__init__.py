@@ -21,7 +21,7 @@ def create_app():
     app.config['MAIL_PORT'] = 587  #gmail port
     app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USERNAME'] = 'noteninja808@gmail.com' #gmail to receive the mail, if the email is fake, also way to check if the mail system works
-    app.config['MAIL_PASSWORD'] = 'uvxy yklb bxeq gptw' #gmail password for the email username above
+    app.config['MAIL_PASSWORD'] = 'sfev engy arei nwbo' #gmail password for the email username above
 
     global mail
     mail = Mail(app) #initialize mail 
