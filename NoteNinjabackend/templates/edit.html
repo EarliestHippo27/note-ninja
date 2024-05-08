@@ -12,7 +12,7 @@
     </div>
     <h1 class="title" id="titleBox" contenteditable="true">{{theDoc.name}}</h1>
 
-    <div style="padding-left: 44px;">
+    <div style="padding-left: 42px;">
         <input id="fontSizeBox" type="number" placeholder="Font: 12px" style="width:167px">
         <select id="fontBox">
             <option onclick="updateFont('Times, serif')" value="Times, serif">Times</option>
@@ -52,7 +52,6 @@
     
     <form action = "" method="post" class="container">
         <input style="display: none;" name="docID" value="{{query}}">
-        <!-- vscode-html-ignore-next -->
         <textarea class="edit-box" name="edit-box" id="edit-box" cols="30" rows="10" spellcheck="false">{{write}}</textarea>
         <button class="savebtn" name="submit-button" type="submit" value="save">Save changes</button>
     </form>
