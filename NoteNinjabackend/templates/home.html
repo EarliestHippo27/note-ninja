@@ -37,15 +37,15 @@
                 </td>
             </tr>
 
-            <div style="float: right">
+            <div style="float: right; display: flex;">
                 <form method="POST">
-                    <select id="filterBox" name="filterType">
+                    <select id="filterBox" name="filterType" class="form-select">
                         <option name="filterType" value="All">All</option>
                         <option name="filterType" value="Homework">Homework</option>
                         <option name="filterType" value="Lecture Notes">Lecture Notes</option>
                         <option name="filterType" value="Important">Important</option>
                     </select>
-                    <button type="submit" class="btn btn-primary" name="submitType" value="filter">Apply Filter</button>
+                    <button type="submit" class="btn btn-primary" name="submitType" value="filter" style="white-space: nowrap;">Apply Filter</button>
                 </form>
             </div>
             
@@ -62,10 +62,8 @@
                     {{Document.date}}
                 </td>
                 <td>
-                    <input type="hidden">
-
-                    <form method="POST">
-                        <select id="tagBox">
+                    <form method="POST" style="display: flex;">
+                        <select class="form-select" id="tagBox" style="width: 25%; margin-right: 1%;">
                             <option disabled selected value="{{Document.tag}}">{{Document.tag}}</option>
                             <option onclick="updateTag('No Tag', '{{Document.id}}')" value="No Tag">No Tag</option>
                             <option onclick="updateTag('Homework', '{{Document.id}}')" value="Homework">Homework</option>
@@ -73,8 +71,8 @@
                             <option onclick="updateTag('Important', '{{Document.id}}')" value="Important">Important</option>
                         </select>
                         <input name="docID" value="{{Document.id}}" style="display: none;">
-                        <button type="submit" class="btn btn-primary" name="submitType" value="edit">Edit</button>
-                        <button type="submit" class="btn btn-danger" name="submitType" value="delete">Delete</button>
+                        <button type="submit" class="btn btn-primary" name="submitType" value="edit" style="margin-right: 1%;">Edit</button>
+                        <button type="submit" class="btn btn-danger" name="submitType" value="delete" >Delete</button>
                     </form>
                 </td>
             </tr>
