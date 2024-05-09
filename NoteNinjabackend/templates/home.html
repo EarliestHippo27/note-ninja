@@ -18,12 +18,11 @@
             <li><a href="#">Services</a></li>
             <li><a href="#">Contact</a></li>--->
         </ul>
-        <div class="profile-icon">
+        <div class="profile-icon" style="display: flexbox;">
             <!-- Placeholder for profile icon -->
-            <img style = "display:inline-block; padding-top: 2px; margin-left: 1000px; width: 60px;" src="{{ url_for('static',filename='resources/user_icon.png') }}" alt="">
+            <h3 id="hero" style="float: right; margin-left: 0px; margin-right: 10px; margin-top: 10px; text-align: right; padding-left: 20px; color: aliceblue; font-size: 2pc;">{{user.username}}</h3>
+            <img id="pfp" style = "display:inline-block; padding-top: 2px; margin-left: 1000px; width: 60px;" src="{{ url_for('static',filename='resources/user_icon.png') }}" alt="">
         </div>
-        
-        <h3 style="display:inline-block; margin-right: 40px; margin-left: 0px; text-align: right; padding-left: 30px; padding-right: 90px; color: aliceblue; font-size: 2pc;">{{user.username}}</h1>
     
         </nav>
     <!--Smith Island Cake-->
@@ -115,6 +114,17 @@
 
 <script>
     tagBox = document.getElementById("tagBox")
+    pfp = document.getElementById("pfp")
+    hero = document.getElementById("hero")
+
+    pfp.addEventListener("click", function() {
+        window.location.href = '/profile';
+    })
+
+    hero.addEventListener("click", function() {
+        window.location.href = '/profile';
+    })
+
 
     function updateTag(tag, id) {
         $.ajax({

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static',filename='styles/styles.css') }}" rel="stylesheet">
+    <title>{{username}}'s Profile</title>
+</head>
+<body background="{{ url_for('static',filename='resources/background.jpg') }}">     
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <!-- Placeholder for website logo -->
+                <img class = "profile-icon" style = "margin-left: 120px" src="{{ url_for('static',filename='resources/ninja-logo.png') }}" alt="">
+            </div>
+            <ul class="nav-links">
+                <li><a href="/">My Files</a></li>
+                <!--<li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>--->
+            </ul>
+            <div class="profile-icon">
+                <!-- Placeholder for profile icon -->
+                <img style = "display:inline-block; padding-top: 2px; margin-left: 800px; width: 60px;" src="{{ url_for('static',filename='resources/user_icon.png') }}" alt="">
+            </div>
+            
+            <h3 style="display:inline-block; margin-left: 0px; text-align: right; padding-left: 30px; padding-right: 10px; color: aliceblue; font-size: 2pc;">{{username}}</h3>
+        
+            </nav>
+    </header>   
+    <form method="POST" class="registration-form">
+        <img src="{{ url_for('static',filename='resources/user_icon.png') }}">
+        <h1>{{username}}</h1>
+        <h1>{{email}}</h1>
+        <label for="newName" style="margin-left: 10px; float: left; font-size: small; margin-bottom: 0%;">Change Username</label>
+        <input name="newName" class="input-box" placeholder="username">
+        <label for="confirmName" style="margin-left: 10px; float: left; font-size: small; margin-bottom: 0%;">Confirm New Username</label>
+        <input name="confirmName" class="input-box" placeholder="username">
+        <button type="submit" class="signup-button" name="submitType" value="change"><strong>Change Username</strong></button>
+        <a href="/reset" style="display: block; color: #fff; font-size: small;">Reset Password</a>
+    </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for message in messages %}
+                <div role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</body>
+</html>

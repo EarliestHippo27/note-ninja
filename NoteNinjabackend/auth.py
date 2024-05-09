@@ -11,6 +11,25 @@ auth = Blueprint('auth', __name__)
 def go():
     return render_template("go.html")
 
+@auth.route('/profile', methods=['GET', 'POST'])
+@login_required
+def profile():
+    user = db.session.get(User, current_user.id)
+    data = request.form
+    newName = request.form.get("newName")
+    confirmName = request.form.get("confirmName")
+    print(data)
+    if request.method == 'POST':
+        if len(newName) < 5:
+            flash('Username must be more than 4 characters', category='error')
+        elif newName != confirmName:
+            flash('Username must match', category='error')
+        else:
+            user.username = newName
+            db.session.commit()
+            flash('Username Changed', 'success')
+    return render_template("profile.html", username=user.username, email=user.email)
+
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
