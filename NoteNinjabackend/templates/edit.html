@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ninja Editor</title>
     <link href="{{ url_for('static',filename='styles/styles.css') }}" rel="stylesheet">
-<<<<<<< HEAD
 <body background="{{ url_for('static',filename='resources/background.jpg') }}" style="width: 100%; align-items: center; margin-left: 0%;">
     <header>
         <nav class="navbar">
@@ -32,30 +31,8 @@
 
     <div class="symbol-array">
     <div style="padding-left: 8px;">
-=======
-    
-<body background="{{ url_for('static',filename='resources/background.jpg') }}" style="width: 90%; align-items: center; margin-left: 5%;">
-    <div>
-        <h3 style="text-align: right; padding-right: 32px;">{{user.username}}</h1>
-    </div>
-    <h1 class="title" id="titleBox" contenteditable="true">{{theDoc.name}}</h1>
-
-    <div style="padding-left: 42px;">
->>>>>>> e6b2a1790af444a40fc102b3ca1676287179a8f9
         <input id="fontSizeBox" type="number" placeholder="Font: 12px" style="width:167px">
-        <select id="fontBox">
-            <option onclick="updateFont('Times, serif')" value="Times, serif">Times</option>
-            <option onclick="updateFont('Arial, serif')" value="Arial, serif">Arial</option>
-            <option onclick="updateFont('Courier New, serif')" value="Courier New, serif">Courier New</option>
-        </select>
-        <select id="alignBox">
-            <option onclick="updateAlign('left')" value="left">Left</option>
-            <option onclick="updateAlign('right')" value="right">Right</option>
-            <option onclick="updateAlign('center')" value="center">Center</option>
-            <option onclick="updateAlign('justify')" value="justify">Block</option>
-        </select>
     </div>
-<<<<<<< HEAD
     <select class = "dropdown" id="fontBox" style="margin-left: 8px;">
         <option class = "dropdown-btn" onclick="updateFont('Times, serif')" value="Times, serif">Times</option>
         <option class = "dropdown-btn" onclick="updateFont('Arial, serif')" value="Arial, serif">Arial</option>
@@ -67,9 +44,6 @@
         <option class = "dropdown-btn" onclick="updateAlign('center')" value="center">Center</option>
         <option class = "dropdown-btn" onclick="updateAlign('justify')" value="justify">Block</option>
     </select>
-=======
-    
->>>>>>> e6b2a1790af444a40fc102b3ca1676287179a8f9
     <br>
     
     
@@ -89,6 +63,7 @@
     
     <form action = "" method="post" class="container">
         <input style="display: none;" name="docID" value="{{query}}">
+        <!-- vscode-html-ignore-next -->
         <textarea class="edit-box" name="edit-box" id="edit-box" cols="30" rows="10" spellcheck="false">{{write}}</textarea>
         <button class="savebtn" name="submit-button" type="submit" value="save">Save Changes</button>
     </form>
