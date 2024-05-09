@@ -4,27 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="{{ url_for('static',filename='styles/styles.css') }}" rel="stylesheet">
-    <title>Login</title>
+    <title>Reset Password</title>
 </head>
-<body background="{{ url_for('static',filename='resources/background.jpg') }}">        
+<body background="{{ url_for('static',filename='resources/background.jpg') }}">
     <form method="POST" class="registration-form">
         <img src="{{ url_for('static',filename='resources/user_icon.png') }}">
-        <h1>Sign In</h1>
-        <label for="email" style="margin-left: 10px; float: left; font-size: small; margin-bottom: 0%;">Username / Email</label>
+        <h1>Reset Password</h1>
+        <label for="email" style="margin-left: 10px; float: left; font-size: small; margin-bottom: 0%;">Email</label>
         <input name="email" type="email" class="input-box" placeholder="user@domain.com">
-        <label for="password" style="margin-left: 10px; float: left; font-size: small; margin-bottom: 0%;">Password</label>
-        <input name="password" type="password" class="input-box" placeholder="*******">
-        <button type="submit" class="signup-button"><strong>Login</strong></button>
-        <a href="/reset" style="display: block; color: #fff; font-size: small;">Forgot password</a>
+        <button type="submit" class="signup-button"><strong>Submit</strong></button>
+        <br>
         <p style="display: inline; color: #fff; font-size: small;">Don't have an account?</p>
         <a href="/sign-up" style="display: inline; color: #fff; font-size: small;">Sign up</a>
+        <br>
+        <p style="display: inline; color: #fff; font-size: small;">Already have an account?</p>
+        <a href="/login" style="display: inline; color: #fff; font-size: small;">Sign in</a>
     </form>
     {% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for message in messages %}
-                <div role="alert">
-                    {{ message }}
-                </div>
+            <div role="alert">
+                {{ message }}
+            </div>
             {% endfor %}
         {% endif %}
     {% endwith %}

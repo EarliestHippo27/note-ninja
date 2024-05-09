@@ -1,6 +1,8 @@
 from . import db
+from flask import current_app
 from flask_login import UserMixin
 from sqlalchemy.sql import func
+from itsdangerous.url_safe import URLSafeTimedSerializer as Serializer
 
 class Document(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -19,4 +21,18 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     username = db.Column(db.String(150))
     documents = db.relationship('Document')
+
+    def get_token(self, expire_sec=300):
+        serial = Serializer(current_app.config['SECRET_KEY'])
+        return serial.dumps({'user_id':self.id}, salt='reset_password')
     
+    @staticmethod
+    def verify_token(token):
+        serial = Serializer(current_app.config['SECRET_KEY'])
+        try:
+            print("Attempting loads")
+            user_id = serial.loads(token, salt='reset_password', max_age=300)['user_id']
+            print("Did loads")
+        except:
+                return None
+        return User.query.get(user_id)
