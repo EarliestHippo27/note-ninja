@@ -5,16 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ninja Editor</title>
     <link href="{{ url_for('static',filename='styles/styles.css') }}" rel="stylesheet">
-<body background="{{ url_for('static',filename='resources/background.jpg') }}" style="width: 90%; align-items: center; margin-left: 5%;">
-    <div>
-        <h3 style="text-align: right; padding-right: 32px;">{{user.username}}</h1>
-    </div>
+<body background="{{ url_for('static',filename='resources/background.jpg') }}" style="width: 100%; align-items: center; margin-left: 0%;">
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <!-- Placeholder for website logo -->
+                <img class = "profile-icon" style = "margin-left: 120px" src="{{ url_for('static',filename='resources/ninja-logo.png') }}" alt="">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">My Files</a></li>
+                <!--<li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>--->
+            </ul>
+            <div class="profile-icon">
+                <!-- Placeholder for profile icon -->
+                <img style = "display:inline-block; padding-top: 2px; margin-left: 800px; width: 60px;" src="{{ url_for('static',filename='resources/user_icon.png') }}" alt="">
+            </div>
+            
+            <h3 style="display:inline-block; margin-left: 0px; text-align: right; padding-left: 30px; padding-right: 10px; color: aliceblue; font-size: 2pc;">{{user.username}}</h1>
+        
+            </nav>
+</header>
     <h1 class="title" id="titleBox" contenteditable="true">{{theDoc.name}}</h1>
 
-    <div style="padding-left: 32px;">
+    <div class="symbol-array">
+    <div style="padding-left: 8px;">
         <input id="fontSizeBox" type="number" placeholder="Font: 12px" style="width:167px">
     </div>
-    <select class = "dropdown" id="fontBox" style="margin-left: 32px;">
+    <select class = "dropdown" id="fontBox" style="margin-left: 8px;">
         <option class = "dropdown-btn" onclick="updateFont('Times, serif')" value="Times, serif">Times</option>
         <option class = "dropdown-btn" onclick="updateFont('Arial, serif')" value="Arial, serif">Arial</option>
         <option class = "dropdown-btn" onclick="updateFont('Courier New, serif')" value="Courier New, serif">Courier New</option>
@@ -27,32 +46,26 @@
     </select>
     <br>
     
-    <div class="symbol-array">
+    
         <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
         <button class="btn" onclick="appendMath('Σ');" name="greater-than-button" symbol value="Σ" type="submit"> Σ </button>
         <button class="btn" onclick="appendMath('β');" name="greater-than-button" symbol value="β" type="submit"> β </button>
         <button class="btn" onclick="appendMath('α');" name="greater-than-button" symbol value="α" type="submit"> α </button>
-        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button class="btn" onclick="appendMath('Σ');" name="greater-than-button" symbol value="Σ" type="submit"> Σ </button>
-        <button class="btn" onclick="appendMath('β');" name="greater-than-button" symbol value="β" type="submit"> β </button>
-        <button class="btn" onclick="appendMath('α');" name="greater-than-button" symbol value="α" type="submit"> α </button>
-        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button class="btn" onclick="appendMath('Σ');" name="greater-than-button" symbol value="Σ" type="submit"> Σ </button>
-        <button class="btn" onclick="appendMath('β');" name="greater-than-button" symbol value="β" type="submit"> β </button>
-        <button class="btn" onclick="appendMath('α');" name="greater-than-button" symbol value="α" type="submit"> α </button>
-        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
-        <button class="btn" onclick="appendMath('>');" name="greater-than-button" symbol value=">" type="submit"> &gt; </button>
+        <button class="btn" onclick="appendMath('≠');" name="greater-than-button" symbol value=">" type="submit"> ≠ </button>
+        <button class="btn" onclick="appendMath('≈');" name="greater-than-button" symbol value=">" type="submit"> ≈ </button>
+        <button class="btn" onclick="appendMath('≥');" name="greater-than-button" symbol value=">" type="submit"> ≥ </button>
+        <button class="btn" onclick="appendMath('≤');" name="greater-than-button" symbol value="Σ" type="submit"> ≤ </button>
+        <button class="btn" onclick="appendMath('±');" name="greater-than-button" symbol value="β" type="submit"> ± </button>
+        <button class="btn" onclick="appendMath('±');" name="greater-than-button" symbol value="α" type="submit"> ± </button>
+        <button class="btn" onclick="appendMath('×');" name="greater-than-button" symbol value=">" type="submit"> × </button>
+        <button class="btn" onclick="appendMath('n√a');" name="greater-than-button" symbol value=">" type="submit"> n√a </button>
     </div>
     
     <form action = "" method="post" class="container">
         <input style="display: none;" name="docID" value="{{query}}">
         <!-- vscode-html-ignore-next -->
         <textarea class="edit-box" name="edit-box" id="edit-box" cols="30" rows="10" spellcheck="false">{{write}}</textarea>
-        <button class="savebtn" name="submit-button" type="submit" value="save">Save changes</button>
+        <button class="savebtn" name="submit-button" type="submit" value="save">Save Changes</button>
     </form>
 </body>
 </html>

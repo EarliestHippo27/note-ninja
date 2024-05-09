@@ -72,7 +72,7 @@ img
 
 .container 
 {
-    margin-left: 15%;
+    margin-left: 7%;
     display: inline-flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -82,9 +82,9 @@ img
 
 .symbol-array
 {   margin-top: 3%;
-    margin-left: 2%;
+    margin-left: 10%;
     display: inline-flex;
-    width: 12%;
+    width: 13%;
     flex-wrap: wrap;
 }
 
@@ -108,12 +108,13 @@ img
   overflow-x: hidden;
   white-space: pre-wrap;
   word-wrap: break-word;
+  margin-left: 0px;
 }
 
 .savebtn {
     display: inline-block;
     padding: 10px 20px;
-    margin-left: 10px;
+    margin-left:5px;
     font-size: 16px;
     font-weight: bold;
     text-decoration: none;
@@ -123,7 +124,7 @@ img
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    width: 150px;
+    width: 160px;
     height: 50px;
 }
 
@@ -169,3 +170,49 @@ img
     display: block;
   }
   
+  header {
+    background-color: #3498db;
+    padding: 10px 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    max-width: 100%;
+    margin: 0 auto;
+    height: 50px;
+}
+
+.logo {
+    /* Styles for logo placeholder */
+}
+
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links li {
+    margin-right: 20px;
+}
+
+.nav-links li:last-child {
+    margin-right: 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ecf0f1;
+}
+
+.profile-icon {
+  margin-left: 170px;
+}
