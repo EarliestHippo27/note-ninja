@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{{ url_for('static',filename='styles/styles.css') }}" rel="stylesheet">
+    <title>Share Document</title>
+</head>
+<body background="{{ url_for('static',filename='resources/background.jpg') }}">
+    <form method="POST" class="registration-form">
+        <img src="{{ url_for('static',filename='resources/user_icon.png') }}">
+        <h1>Share Document</h1>
+        <label for="email" style="margin-left: 10px; float: left; font-size: small; margin-bottom: 0%;">Email</label>
+        <input name="email" type="email" class="input-box" placeholder="user@domain.com">
+        <input name="docID" style="display: none;" value="{{docID}}">
+        <button type="submit" class="signup-button" name="submitType" value="share"><strong>Submit</strong></button>
+        <br>
+    </form>
+    <!--{% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for message in messages %}
+            <div role="alert">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}-->
+</body>
+</html>

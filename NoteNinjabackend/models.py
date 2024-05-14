@@ -15,6 +15,21 @@ class Document(db.Model):
     align = db.Column(db.String(100))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
+    def get_token(self):
+        serial = Serializer(current_app.config['SECRET_KEY'])
+        return serial.dumps({'doc_id':self.id}, salt='share')
+    
+    @staticmethod
+    def verify_token(token):
+        serial = Serializer(current_app.config['SECRET_KEY'])
+        try:
+            print("Attempting loads")
+            doc_id = serial.loads(token, salt='share', max_age=300)['doc_id']
+            print("Did loads")
+        except:
+                return None
+        return Document.query.get(doc_id)
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
@@ -22,7 +37,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(150))
     documents = db.relationship('Document')
 
-    def get_token(self, expire_sec=300):
+    def get_token(self):
         serial = Serializer(current_app.config['SECRET_KEY'])
         return serial.dumps({'user_id':self.id}, salt='reset_password')
     

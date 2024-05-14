@@ -1,6 +1,8 @@
-from flask import Blueprint, render_template, request, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, flash, current_app
 from flask_login import login_required, current_user
-from .models import *  
+from .models import * 
+from . import db, mail
+from flask_mail import Message, Mail
 
 views = Blueprint('views', __name__)
 
@@ -62,6 +64,84 @@ def show_editor():
         
     print(doc.data)
     return render_template("edit.html", query=docID, write=doc.data, theDoc=doc, user=db.session.get(User,current_user.id))
+
+def send_mail(user: User, doc: Document):
+    token = doc.get_token()
+    print(token)
+    msg = Message('Share Document Request', sender='noreply@noteninja.com', recipients=[user.email])
+    msg.body = f'''A document has been shared with you, please follow the link below:
+
+    {url_for('views.share_token', token=token, _external=True)}
+    '''
+
+    mail.send(msg)
+
+@views.route('/share', methods=['GET', 'POST'])
+@login_required
+def share():
+    data = request.form
+    submitType = request.form.get("submitType")
+    print(data)
+    if request.method == 'POST':
+        if submitType == "share":
+            docID = request.form.get("docID")
+            var = {"docID":docID}
+            return redirect(url_for("views.share_request", **var))
+        if submitType == "filter":
+            userDocs = db.session.get(User,current_user.id).documents
+            filt = request.form.get("filterType")
+            if (filt == "All" or filt == None):
+                return render_template("home.html", query=db.session.get(User,current_user.id).documents, user=db.session.get(User,current_user.id))
+            
+            filtDocs = [doc for doc in userDocs if doc.tag == filt]
+                
+            return render_template("share.html", query=filtDocs, user=db.session.get(User,current_user.id))
+    return render_template("share.html", query=db.session.get(User,current_user.id).documents, user=db.session.get(User,current_user.id))
+
+@views.route('/share/<token>', methods=['GET', 'POST'])
+@login_required
+def share_token(token):
+    print(token)
+    doc : Document
+    doc = Document.verify_token(token)
+    if doc == None:
+        flash('That is an Invalid/Expired Token', category='error')
+        return redirect(url_for('auth.reset'))
+    #From This point, the token is valid for some doc
+    new_doc = Document(name="New Document", user_id=current_user.id)
+    new_doc.name = doc.name
+    new_doc.data = doc.data
+    new_doc.align = doc.align
+    new_doc.font = doc.font
+    new_doc.font_size = doc.font_size
+    new_doc.tag = doc.tag
+    db.session.add(new_doc)
+    db.session.commit()
+    
+    return redirect(url_for("views.home"))
+
+@views.route('/share-request', methods=['GET', 'POST'])
+@login_required
+def share_request():
+    data = request.form
+    docID = request.args.get("docID")
+    submitType = request.form.get("submitType")
+    print(docID)
+    if request.method == 'POST':
+        if docID == None:
+            return redirect(url_for("views.home"))
+        doc = db.session.get(Document,docID)
+        if submitType == "share":
+            email = request.form.get('email')
+            user = User.query.filter_by(email=email).first()
+            if not user:
+                # if no such user
+                flash('No account with that Email', category='error')
+            else:
+                # if user exists
+                send_mail(user, doc)
+                return redirect(url_for('views.share'))
+    return render_template("share_request.html", docID=docID)
 
 @views.route('/update-title', methods=['GET','POST'])
 @login_required

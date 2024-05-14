@@ -29,14 +29,11 @@
     <!--button for creating new file-->
     <!--table to store file names and buttons-->
     <div class="title">
-        <h1 style="text-align: center; padding-top: 10px;">Welcome {{user.username}}!</h1>
+        <h1 style="text-align: center; padding-top: 10px;">Select a Document to Share</h1>
     </div>
     <br><br>
-    <form method="POST">
-        <button class="btn btn-primary" style="float:left; margin-left: 25px;" name="submitType" value="create">Create New File</button>
-    </form>
-    <a href="/share"class="btn btn-primary" style="float:left; margin-left: 10px;">Share</a>
-    <a href="/logout"class="btn btn-primary" style="float:right; margin-right: 25px;">Logout</a>
+    <a href="/"class="btn btn-primary" style="float:left; margin-left: 25px;">Back</a>
+   
     <table style="margin-left: 25px; margin-right: 25px;"class="table">
        
         <h1 style="text-align: center;">My Files</h1>
@@ -81,16 +78,11 @@
                     <input type="hidden">
 
                     <form method="POST">
-                        <select id="tagBox">
+                        <select disabled id="tagBox">
                             <option disabled selected value="{{Document.tag}}">{{Document.tag}}</option>
-                            <option onclick="updateTag('No Tag', '{{Document.id}}')" value="No Tag">No Tag</option>
-                            <option onclick="updateTag('Homework', '{{Document.id}}')" value="Homework">Homework</option>
-                            <option onclick="updateTag('Lecture Notes', '{{Document.id}}')" value="Lecture Notes">Lecture Notes</option>
-                            <option onclick="updateTag('Important', '{{Document.id}}')" value="Important">Important</option>
                         </select>
                         <input name="docID" value="{{Document.id}}" style="display: none;">
-                        <button type="submit" class="btn btn-primary" name="submitType" value="edit">Edit</button>
-                        <button type="submit" class="btn btn-danger" name="submitType" value="delete">Delete</button>
+                        <button type="submit" class="btn btn-primary" name="submitType" value="share">Share</button>
                     </form>
                 </td>
             </tr>
