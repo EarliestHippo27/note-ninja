@@ -20,10 +20,10 @@
             </ul>
             <div class="profile-icon">
                 <!-- Placeholder for profile icon -->
-                <img id="pfp" style = "display:inline-block; padding-top: 2px; margin-left: 800px; width: 60px;" src="{{ url_for('static',filename='resources/user_icon.png') }}" alt="">
+                <img id="pfp" style = "cursor: pointer; display:inline-block; padding-top: 2px; margin-left: 800px; width: 60px;" src="{{ url_for('static',filename='resources/user_icon.png') }}" alt="">
             </div>
             
-            <h3 id="hero" style="display:inline-block; margin-left: 0px; text-align: right; padding-left: 30px; color: aliceblue; font-size: 2pc;">{{user.username}}</h3>
+            <h3 id="hero" style="cursor: pointer; display:inline-block; margin-right: 30px; text-align: right; padding-left: 30px; color: aliceblue; font-size: 2pc;">{{user.username}}</h3>
         
             </nav>
 </header>
@@ -56,7 +56,7 @@
         <button class="btn" onclick="appendMath('≥');" name="greater-than-button" symbol value=">" type="submit"> ≥ </button>
         <button class="btn" onclick="appendMath('≤');" name="greater-than-button" symbol value="Σ" type="submit"> ≤ </button>
         <button class="btn" onclick="appendMath('±');" name="greater-than-button" symbol value="β" type="submit"> ± </button>
-        <button class="btn" onclick="appendMath('±');" name="greater-than-button" symbol value="α" type="submit"> ± </button>
+        <button class="btn" onclick="appendMath('∫');" name="greater-than-button" symbol value="α" type="submit"> ∫ </button>
         <button class="btn" onclick="appendMath('×');" name="greater-than-button" symbol value=">" type="submit"> × </button>
         <button class="btn" onclick="appendMath('n√a');" name="greater-than-button" symbol value=">" type="submit"> n√a </button>
     </div>

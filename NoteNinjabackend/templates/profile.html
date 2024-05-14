@@ -31,7 +31,7 @@
     <form method="POST" class="registration-form">
         <img src="{{ url_for('static',filename='resources/user_icon.png') }}">
         <h1>{{username}}</h1>
-        <h1>{{email}}</h1>
+        <!--<h1>{{email}}</h1>-->
         <label for="newName" style="margin-left: 10px; float: left; font-size: small; margin-bottom: 0%;">Change Username</label>
         <input name="newName" class="input-box" placeholder="username">
         <label for="confirmName" style="margin-left: 10px; float: left; font-size: small; margin-bottom: 0%;">Confirm New Username</label>
@@ -39,7 +39,7 @@
         <button type="submit" class="signup-button" name="submitType" value="change"><strong>Change Username</strong></button>
         <a href="/reset" style="display: block; color: #fff; font-size: small;">Reset Password</a>
     </form>
-    {% with messages = get_flashed_messages(with_categories=true) %}
+    <!--{% with messages = get_flashed_messages(with_categories=true) %}
         {% if messages %}
             {% for message in messages %}
                 <div role="alert">
@@ -47,6 +47,6 @@
                 </div>
             {% endfor %}
         {% endif %}
-    {% endwith %}
+    {% endwith %}-->
 </body>
 </html>
