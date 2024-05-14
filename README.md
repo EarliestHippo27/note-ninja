@@ -7,6 +7,8 @@ Installation:
 	- Flask-Login
 	- Flask-SQLAlchemy
 	- SQLAlchemy-Utils
+	- Flask-Mail
+ 	- itsdangerous
 4. cd into note-ninja
 5. run 'python main.py'
 
