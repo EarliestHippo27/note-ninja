@@ -12,8 +12,9 @@ Installation:
 	- SQLAlchemy-Utils
 	- Flask-Mail
  	- itsdangerous
-4. cd into note-ninja
-5. run 'python main.py'
+4. Activate virtual environment
+5. cd into note-ninja
+6. run 'python main.py'
 
 # Example Directory
 ../venv  
