@@ -1,4 +1,7 @@
 # note-ninja
+Deployment:
+http://jtran11.pythonanywhere.com
+
 Installation:
 1. Create a virtual environment
 2. Inside the virtual environment folder, run git clone. IE note-ninja folder will end up inside the virtual environment folder
